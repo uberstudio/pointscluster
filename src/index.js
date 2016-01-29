@@ -101,14 +101,14 @@ SuperCluster.prototype = {
         // filter out neighbors that are too far or already processed
         if (zoom < b.zoom && distSq(p, b) <= r * r) {
           if (foundNeighbors === false) {
-            clusterPoints = [...p.points];
+            clusterPoints = p.points;
           }
           foundNeighbors = true;
           b.zoom = zoom; // save the zoom (so it doesn't get processed twice)
           wx += b.wx * b.numPoints; // accumulate coordinates for calculating weighted center
           wy += b.wy * b.numPoints;
           numPoints += b.numPoints;
-          clusterPoints = [...clusterPoints, b.points];
+          clusterPoints = [...clusterPoints, ...b.points];
         }
       }
 
@@ -154,5 +154,5 @@ const cl = supercluster([
 
 const r = cl({ bounds: { nw: { lat: 85, lng: -180 }, se: { lat: -85, lng: 180 } }, zoom: 2 });
 
-console.log(r);
+console.log(JSON.stringify(r));
 */
