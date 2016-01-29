@@ -1,6 +1,6 @@
 {
   "name": "points-cluster",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A fork of supercluster mapbox library.",
   "main": "lib/index.js",
   "scripts": {
