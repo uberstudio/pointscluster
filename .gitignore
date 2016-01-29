@@ -1,7 +1,3 @@
-node_modules
-.nyc_output
-coverage
-tmp
-*.log
-trees*.json
-demo/supercluster.js
+/node_modules
+/lib
+npm-debug.log

@@ -1,16 +1,16 @@
-# supercluster [![Simply Awesome](https://img.shields.io/badge/simply-awesome-brightgreen.svg)](https://github.com/mourner/projects) [![Build Status](https://travis-ci.org/mapbox/supercluster.svg?branch=master)](https://travis-ci.org/mapbox/supercluster)
+A fork of https://github.com/mapbox/supercluster library,
 
-A very fast JavaScript library for geospatial point clustering for browsers and Node. _A work in progress._
+Added points array to cluster.
+
+Removed lat lng transformations on Add.
 
 ```js
-var index = supercluster({
-    radius: 40,
-    maxZoom: 16
-});
-index.load(points);
-index.getClusters([-180, -85, 180, 85], 2);
+const cl = supercluster([
+  { lat: 10, lng: 10 },
+  { lat: 10.1, lng: 10.1 },
+  { lat: 12, lng: 12 },
+  { lat: 84, lng: 179 },
+]);
+
+const r = cl({ bounds: { nw: { lat: 85, lng: -180 }, se: { lat: -85, lng: 180 } }, zoom: 2 });
 ```
-
-Clustering 6 million points in Leaflet:
-
-![clusters2](https://cloud.githubusercontent.com/assets/25395/11857351/43407b46-a40c-11e5-8662-e99ab1cd2cb7.gif)
