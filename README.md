@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/istarkov/supercluster.svg?branch=master)](https://travis-ci.org/istarkov/supercluster)
+
 A fork of https://github.com/mapbox/supercluster library,
 
 Added points array to cluster.
