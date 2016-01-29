@@ -79,7 +79,7 @@ SuperCluster.prototype = {
     // loop through each point
     for (let i = 0; i < points.length; i++) {
       const p = points[i];
-      let clusterPoints;
+      let clusterPoints = p.points;
       // if we've already visited the point at this zoom level, skip it
       if (p.zoom <= zoom) continue;
       p.zoom = zoom;
@@ -100,9 +100,6 @@ SuperCluster.prototype = {
         const b = bboxNeighbors[j];
         // filter out neighbors that are too far or already processed
         if (zoom < b.zoom && distSq(p, b) <= r * r) {
-          if (foundNeighbors === false) {
-            clusterPoints = p.points;
-          }
           foundNeighbors = true;
           b.zoom = zoom; // save the zoom (so it doesn't get processed twice)
           wx += b.wx * b.numPoints; // accumulate coordinates for calculating weighted center
