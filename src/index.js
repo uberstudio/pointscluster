@@ -57,10 +57,17 @@ SuperCluster.prototype = {
   },
 
   getClusters(bbox, zoom) {
-    const projBBox = [bbox[0], bbox[1], bbox[2], bbox[3]];
+    const [nwLng, seLat, seLng, nwLat] = bbox;
     const z = Math.max(this.options.minZoom, Math.min(zoom, this.options.maxZoom + 1));
-    const clusters = this.trees[z].search(projBBox);
-    return clusters; // .map(getClusterJSON);
+    const bBoxes = nwLng < seLng
+      ? [bbox]
+      : [[nwLng, seLat, 180, nwLat], [-180, seLat, seLng, nwLat]];
+
+    const clusters = bBoxes
+      .map((bBox) => this.trees[z].search(bBox))
+      .reduce((r, lst) => [...r, ...lst], []);
+
+    return clusters;
   },
 
   _initTrees() {
